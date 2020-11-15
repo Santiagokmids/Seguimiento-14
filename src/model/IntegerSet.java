@@ -36,21 +36,6 @@ public class IntegerSet{
 		cardinality++;
 	}
 
-	/*public int changeElement(IntegerSet obj, Integer element){
-		int elements = 0;
-		boolean exit = true;
-		for(int i = 0;i<obj.getCardinality() && exit;i++){
-			System.out.println("ee"+element);
-			System.out.println(obj.getElements().get(i));
-			if(element == obj.getElements().get(i)){
-				System.out.println("pasooo");
-				elements = i;
-				exit = false;
-			}
-		}
-		return elements;
-	}*/
-
 	public void removeElement(Integer element){
 		elements.remove(element);
 		cardinality--;

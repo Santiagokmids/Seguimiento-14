@@ -102,14 +102,6 @@ public class MathApp{
 		}
 	}
 
-	public boolean message(IntegerSet obj1, IntegerSet obj2){   
-		boolean stop = true;
-		if(obj1 == null || obj2 == null){
-			stop = false;
-		}
-		return stop;
-	}
-
 	public void union(String name, String name2, String newName){
 		IntegerSet obj1 = find(name);
 		IntegerSet obj2 = find(name2);
