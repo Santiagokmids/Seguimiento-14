@@ -36,6 +36,21 @@ public class IntegerSet{
 		cardinality++;
 	}
 
+	/*public int changeElement(IntegerSet obj, Integer element){
+		int elements = 0;
+		boolean exit = true;
+		for(int i = 0;i<obj.getCardinality() && exit;i++){
+			System.out.println("ee"+element);
+			System.out.println(obj.getElements().get(i));
+			if(element == obj.getElements().get(i)){
+				System.out.println("pasooo");
+				elements = i;
+				exit = false;
+			}
+		}
+		return elements;
+	}*/
+
 	public void removeElement(Integer element){
 		elements.remove(element);
 		cardinality--;
@@ -113,11 +128,14 @@ public class IntegerSet{
 				objNew.addElement(elements.get(i));
 			}
 			int count = 0;
-			for(int k = 0;k<objNew.getElements().size() && exit;k++){
+			int counter = objNew.getCardinality();
+			for(int k = 0;k<counter && exit;k++){
 				count = k;
+				System.out.println("ROBOOOOOOO"+objNew.getCardinality());
+				System.out.println("countaasosoas"+count);
 				findInt(set,objNew);			
 				setCardinality(objNew.getElements().size());
-				if(count == (objNew.getElements().size() - 1)){
+				if(count == (counter - 1)){
 					exit = false;
 				}
 			}	
@@ -130,15 +148,24 @@ public class IntegerSet{
 		Integer element = 0;
 		boolean exit = true;
 		for(int i = 0;i<objNew.getCardinality() && exit;i++){
+			element = objNew.getElements().get(i);
+			System.out.println(element+" lsaa");
 			for(int k = 0;k<set.getCardinality();k++){
+				System.out.println(set.getElements().get(k)+" PPPa");
 				if(element != set.getElements().get(k)){
-					count = k+1;	
+					count += 1;
+					System.out.println(count+" cout");	
 				}
+				else
+					count -=1;
 			}
 			if(count == (set.getElements().size())){
+				System.out.println("hechoo");
 				objNew.removeElement(element);
 				exit = false;	
 			}
+			else
+				count = 0;
 		}
 	}
 		
