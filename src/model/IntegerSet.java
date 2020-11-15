@@ -36,21 +36,6 @@ public class IntegerSet{
 		cardinality++;
 	}
 
-	/*public int changeElement(IntegerSet obj, Integer element){
-		int elements = 0;
-		boolean exit = true;
-		for(int i = 0;i<obj.getCardinality() && exit;i++){
-			System.out.println("ee"+element);
-			System.out.println(obj.getElements().get(i));
-			if(element == obj.getElements().get(i)){
-				System.out.println("pasooo");
-				elements = i;
-				exit = false;
-			}
-		}
-		return elements;
-	}*/
-
 	public void removeElement(Integer element){
 		elements.remove(element);
 		cardinality--;
@@ -66,7 +51,7 @@ public class IntegerSet{
 			int count = 0;
 			for(int k = 0;k<set.getElements().size() && exit;k++){
 				count++;
-				findUni(set,objNew,set.getElements().get(k));			
+				findUni(objNew,set.getElements().get(k));			
 				setCardinality(objNew.getElements().size());
 				if(count == (objNew.getElements().size() - 1)){
 					exit = false;
@@ -76,7 +61,7 @@ public class IntegerSet{
 		return objNew;
 	}
 
-	public void findUni(IntegerSet set,IntegerSet objNew,int element){
+	public void findUni(IntegerSet objNew,int element){
 		int count = 0,counter = 1;
 		for(int i = 0;i<objNew.getElements().size();i++){
 			if(objNew.getElements().get(i) != element){
@@ -115,7 +100,7 @@ public class IntegerSet{
 	public void findDiff(IntegerSet set,IntegerSet objNew,int element){
 		for(int i = 0;i<objNew.getElements().size();i++){
 			if(objNew.getElements().get(i) == element){
-				//objNew.removeElement(position);
+				objNew.removeElement(objNew.getElements().get(i));
 			}
 		}
 	}
@@ -128,27 +113,35 @@ public class IntegerSet{
 				objNew.addElement(elements.get(i));
 			}
 			int count = 0;
-			for(int k = 0;k<set.getElements().size() && exit;k++){
-				count++;
-				findInt(set,objNew,set.getElements().get(k));			
+			for(int k = 0;k<objNew.getElements().size() && exit;k++){
+				count = k;
+				findInt(set,objNew);			
 				setCardinality(objNew.getElements().size());
 				if(count == (objNew.getElements().size() - 1)){
 					exit = false;
-				}	
-			}
+				}
+			}	
 		}
 		return objNew;
 	}
 
-	public void findInt(IntegerSet set,IntegerSet objNew,int element){
-		for(int i = 0;i<objNew.getElements().size();i++){
-			if(objNew.getElements().get(i) != element){
-
-				//int position = changeElement(objNew,objNew.getElements().get(i));
-				//objNew.removeElement(position);
+	public void findInt(IntegerSet set,IntegerSet objNew){
+		int count = 0;
+		Integer element = 0;
+		boolean exit = true;
+		for(int i = 0;i<objNew.getCardinality() && exit;i++){
+			for(int k = 0;k<set.getCardinality();k++){
+				if(element != set.getElements().get(k)){
+					count = k+1;	
+				}
+			}
+			if(count == (set.getElements().size())){
+				objNew.removeElement(element);
+				exit = false;	
 			}
 		}
-	}	
+	}
+		
 
 	public IntegerSet symmetricDifference(IntegerSet set, String newName){
 		IntegerSet objNew = new IntegerSet(newName);
