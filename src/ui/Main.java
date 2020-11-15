@@ -153,10 +153,10 @@ public class Main{
 	}
 
 	public void removeElement(){
-		System.out.println("Ingrese el nombre del conjunto al que va a Eliminar un elemento");
-		String name = lector.nextLine();
 		boolean exit = true;
 		for(int i = 0;exit;i++){
+			System.out.println("Ingrese el nombre del conjunto al que va a Eliminar un elemento");
+			String name = lector.nextLine();
 			if(mathApp.find(name) != null){
 				System.out.println("Ingrese el elemento que va a Eliminar de "+name);
 				int element = lector.nextInt();

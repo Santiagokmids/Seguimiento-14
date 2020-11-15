@@ -100,11 +100,12 @@ public class IntegerSet{
 				objNew.addElement(elements.get(i));
 			}
 			int count = 0;
+			int counter = objNew.getCardinality();
 			for(int k = 0;k<set.getElements().size() && exit;k++){
 				count++;
 				findDiff(set,objNew,set.getElements().get(k));			
 				setCardinality(objNew.getElements().size());
-				if(count == (objNew.getElements().size() - 1)){
+				if(count ==  (counter - 1)){
 					exit = false;
 				}	
 			}
@@ -131,8 +132,6 @@ public class IntegerSet{
 			int counter = objNew.getCardinality();
 			for(int k = 0;k<counter && exit;k++){
 				count = k;
-				System.out.println("ROBOOOOOOO"+objNew.getCardinality());
-				System.out.println("countaasosoas"+count);
 				findInt(set,objNew);			
 				setCardinality(objNew.getElements().size());
 				if(count == (counter - 1)){
@@ -149,18 +148,14 @@ public class IntegerSet{
 		boolean exit = true;
 		for(int i = 0;i<objNew.getCardinality() && exit;i++){
 			element = objNew.getElements().get(i);
-			System.out.println(element+" lsaa");
 			for(int k = 0;k<set.getCardinality();k++){
-				System.out.println(set.getElements().get(k)+" PPPa");
 				if(element != set.getElements().get(k)){
 					count += 1;
-					System.out.println(count+" cout");	
 				}
 				else
 					count -=1;
 			}
 			if(count == (set.getElements().size())){
-				System.out.println("hechoo");
 				objNew.removeElement(element);
 				exit = false;	
 			}
@@ -178,31 +173,35 @@ public class IntegerSet{
 				objNew.addElement(elements.get(i));
 			}
 			int count = 0;
-			for(int k = 0;k<set.getElements().size() && exit;k++){
-				count++;
+			int counter = objNew.getCardinality();
+			for(int k = 0;k<counter && exit;k++){
+				count = k;
 				findSymm(set,objNew,set.getElements().get(k));			
 				setCardinality(objNew.getElements().size());
-				if(count == (objNew.getElements().size() - 1)){
+				if(count == (counter - 1)){
 					exit = false;
-				}	
-			}
-		}	
+				}
+			}	
+		}
 		return objNew;
 	}
 
 	public void findSymm(IntegerSet set,IntegerSet objNew,int element){
-		int count = 0;
+		int count = 0,counter = 1;
 		for(int i = 0;i<objNew.getElements().size();i++){
-			if(objNew.getElements().get(i) == element){
-				count = i+1;
+			if(objNew.getElements().get(i) != element){
+				count++;
+				counter = i+1;
+			}
+			else{
+				counter = i-1;
 			}
 		}
-		if(count >= 1){
+		if(count == counter){
+			objNew.addElement(element);
+		}
+		else 
 			objNew.removeElement(element);
-		}
-		else if(count == 0){
-			objNew.addElement(element);	
-		}
 	}
 
 	public String toString(){
